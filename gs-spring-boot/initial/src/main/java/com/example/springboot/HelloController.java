@@ -15,5 +15,14 @@ public class HelloController {
 		}
 		return ResponseEntity.ok("Good Morning");
 	}
+	@GetMapping("/hello")
+	public String exercise1() {
+		return "Hello Marco's World";
+	}
+
+	@GetMapping("/greeting")
+	public ResponseEntity<String> exercise2() {
+		return ResponseEntity.status(200).body("Good Afternoon!");
+	}
 
 }
