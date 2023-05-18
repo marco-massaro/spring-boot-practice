@@ -1,16 +1,15 @@
-package com.example.springboot.Controller_path_variables_Request_params_returning_objects;
+package com.example.springboot.DevelhopeExercises;
 
 import com.example.springboot.Meal;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class Exercise3 {
+public class Exercise2_1 {
     private List<Meal> marcoMealObjects = Arrays.asList(
             new Meal("Chicken Tikka Masala", "Chicken tikka masala is a dish very yummy", 10.99),
             new Meal("Chicken Parm", "Very italian yummy", 15),
@@ -20,14 +19,19 @@ public class Exercise3 {
             new Meal("Chicken cordon bleu", "French yum", 6.99),
             new Meal("Chicken noodle soup", "English yum", 6.99)
     );
-    @GetMapping("meal/description-match/{phrase}")
-    public ResponseEntity<?> getDescriptionMatch(
-            @PathVariable("phrase") String phrase){
-        for (Meal meal : marcoMealObjects){
-            if (meal.getDescription().toLowerCase().contains(phrase.toLowerCase())){
-                return ResponseEntity.ok(meal);
-            }
-        }
-        return ResponseEntity.badRequest().build();
+
+    private List<Meal> marcoSoups = Arrays.asList(
+            new Meal("Chicken noodle soup", "good noods", 6.99),
+            new Meal("Tomato soup", "it's aight", 5.99),
+            new Meal("Clam chowder", "vile", 4.99),
+            new Meal("French onion soup", "sounds good", 3.99),
+            new Meal("Minestrone soup", "Mamma mia", 2.99),
+            new Meal("Chicken tortilla soup", "muy bien", 1.99),
+            new Meal("bone broth soup", "crazy boujie", 8.99)
+    );
+
+    @GetMapping("/meals")
+    public ResponseEntity<?> mealObjects(){
+        return ResponseEntity.ok(marcoMealObjects);
     }
 }

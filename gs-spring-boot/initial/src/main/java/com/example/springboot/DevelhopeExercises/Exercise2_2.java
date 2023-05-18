@@ -1,17 +1,16 @@
-package com.example.springboot.Controller_path_variables_Request_params_returning_objects;
+package com.example.springboot.DevelhopeExercises;
 
 import com.example.springboot.Meal;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class Exercise4 {
+public class Exercise2_2 {
     private List<Meal> marcoMealObjects = Arrays.asList(
             new Meal("Chicken Tikka Masala", "Chicken tikka masala is a dish very yummy", 10.99),
             new Meal("Chicken Parm", "Very italian yummy", 15),
@@ -21,18 +20,14 @@ public class Exercise4 {
             new Meal("Chicken cordon bleu", "French yum", 6.99),
             new Meal("Chicken noodle soup", "English yum", 6.99)
     );
-
-    @GetMapping("/meal/price")
-    public ResponseEntity<?> getMealListPrice(
-            @RequestParam("minPrice") double minPrice,
-            @RequestParam("maxPrice") double maxPrice
-    ){
-        List<Meal> mealPrices = new ArrayList<>();
+    @GetMapping("meal/{name}")
+    public ResponseEntity<?> getMealName(
+            @PathVariable("name") String name){
         for (Meal meal : marcoMealObjects){
-            if (meal.getPrice() >= minPrice && meal.getPrice() <= maxPrice){
-                mealPrices.add(meal);
+            if (meal.getName().equalsIgnoreCase(name)){
+                return ResponseEntity.ok(meal);
             }
         }
-        return ResponseEntity.ok(mealPrices);
-    }
+        return ResponseEntity.notFound().build();
+    };
 }
