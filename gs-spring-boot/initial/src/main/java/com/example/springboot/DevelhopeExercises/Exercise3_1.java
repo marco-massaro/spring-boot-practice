@@ -1,6 +1,6 @@
 package com.example.springboot.DevelhopeExercises;
 
-import com.example.springboot.Meal;
+import com.example.springboot.entity.Meal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

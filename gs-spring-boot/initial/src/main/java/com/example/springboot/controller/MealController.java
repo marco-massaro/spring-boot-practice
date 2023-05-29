@@ -1,6 +1,6 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.Meal;
+import com.example.springboot.entity.Meal;
 import com.example.springboot.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class MealController {
         try {
             mealService.addMeal(meal);
             return ResponseEntity.ok("Meal added");
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
