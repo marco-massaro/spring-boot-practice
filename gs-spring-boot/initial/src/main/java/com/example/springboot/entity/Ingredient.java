@@ -13,7 +13,6 @@ public class Ingredient {
     private boolean isVegan;
     private boolean isGlutenFree;
     private boolean isLactoseFree;
-
     @JsonBackReference
     @ManyToOne
     private Meal meal;

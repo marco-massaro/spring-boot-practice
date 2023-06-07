@@ -1,4 +1,5 @@
 package com.example.springboot.entity;
+
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -7,25 +8,35 @@ import java.util.List;
 @Entity
 public class Meal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
     private String description;
     private double price;
     private boolean isSummerMeal;
-
+    private boolean isWinterMeal;
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ingredient> ingredients;
 
-    public Meal(String name, String description, double price, boolean isSummerMeal) {
+    public Meal(long id, String name, String description, double price, boolean isSummerMeal, boolean isWinterMeal, List<Ingredient> ingredients) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.isSummerMeal = isSummerMeal;
+        this.isWinterMeal = isWinterMeal;
+        this.ingredients = ingredients;
     }
 
     public Meal() {
+    }
+
+    public boolean isWinterMeal() {
+        return isWinterMeal;
+    }
+
+    public void setWinterMeal(boolean winterMeal) {
+        isWinterMeal = winterMeal;
     }
 
     public String getName() {
